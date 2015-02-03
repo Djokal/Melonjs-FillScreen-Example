@@ -12091,28 +12091,34 @@ THE SOFTWARE.
             }
 
             if (settings.autoScale) {
-                // get the parent container max size
+                
+
                 var parent = me.video.renderer.getScreenCanvas().parentNode;
                 var _max_width = Math.min(maxWidth, parent.width || window.innerWidth);
                 var _max_height = Math.min(maxHeight, parent.height || window.innerHeight);
                 var designRatio = me.video.renderer.getWidth() / me.video.renderer.getHeight();
                 var screenRatio = _max_width / _max_height;
-                var sWidth = me.video.renderer.getHeight() * screenRatio;
-                var sHeight = me.video.renderer.getWidth() * (_max_height / _max_width);
+                var sWidth = Infinity;
+                var sHeight = Infinity;
+                var cWidth=Infinity;
+                var cHeight=Infinity;
                 console.log("Renderer resolution : "+me.video.renderer.getWidth()+"x"+me.video.renderer.getHeight());
                 console.log("Window resolution : "+_max_width+"x"+_max_height);
                 
                 if (settings.scaleMethod === "fill") {
+                    // scale the display canvas to fill the parent container
                     if (screenRatio < designRatio) {
+                        sWidth = me.video.renderer.getHeight() * screenRatio;
                         scaleX = scaleY = _max_width / sWidth;
                     }
                     else {
+                        sHeight = me.video.renderer.getWidth() * (_max_height / _max_width);
                         scaleX = scaleY = _max_height / sHeight;
                     }
                         console.log("ScaleX : "+scaleX);
                         console.log("_______________");
-                        document.documentElement.style.overflow = 'hidden';  // hide the overflow in firefox and chrome
-                        document.body.scroll = "no"; // hide the overflow in IE
+                                            document.documentElement.style.overflow = "hidden";  // hide the overflow in firefox and chrome
+                    document.body.scroll = "no"; // hide the overflow in IE
                 }
                 else if (settings.scaleMethod === "stretch") {
                     // scale the display canvas to fit with the parent container
