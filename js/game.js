@@ -12,11 +12,13 @@ var game = {
     // Run on page load.
     "onload" : function () {
     // Initialize the video.
-    if (!me.video.init("screen",  me.video.CANVAS, 960, 640, true, 'auto',"fill")) {
-        alert("Your browser does not support HTML5 canvas.");
-        return;
-    }
-
+me.video.init(960, 640, {
+    wrapper: "screen", 
+    renderer: me.video.CANVAS,
+    scale: 'auto', 
+    scaleMethod:"fill", 
+    transparent: true
+});
     // add "#debug" to the URL to enable the debug Panel
     if (document.location.hash === "#debug") {
         window.onReady(function () {

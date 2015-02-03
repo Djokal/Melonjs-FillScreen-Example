@@ -29,12 +29,12 @@ var BackgroundLayer = me.ImageLayer.extend({
     this.speed=speed;
 
     // call parent constructor
-     this._super(me.ImageLayer, "init", [name, width, height, image, z, ratio]);
+     this._super(me.ImageLayer, "init", [0,0, width, height,name, image, z, ratio]);
   },
 
   update: function() {
 
-      this.pos.x -= this.speed;
+      //this.pos.x -= this.speed;
 
     return true;
   }
