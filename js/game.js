@@ -14,8 +14,8 @@ var game = {
     // Initialize the video.
 me.video.init(960, 640, {
     wrapper: "screen", 
-    renderer: me.video.CANVAS,
-    scale: 'auto', 
+    renderer: me.video.WEBGL,
+    scale: "auto", 
     scaleMethod:"fill", 
     transparent: true
 });
